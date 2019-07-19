@@ -44,7 +44,7 @@ class Roters:
 				points.append((dst+i,pt))
 			# pygame.draw.polygon(self.screen,(255,0,0),points,1)
 			pygame.draw.aalines(self.screen,(255,0,0),False,points)
-			if len(self.plotp[n-1])>500:
+			if len(self.plotp[n-1])>600:
 				self.plotp[n-1].pop()
 
 	def run(self):
