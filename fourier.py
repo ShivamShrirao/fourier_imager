@@ -8,21 +8,22 @@ SCR_WIDTH	= 800
 COLORS		= [(0, 0, 0),(192, 192, 192),(128, 128, 128),(255, 0, 0),(255, 255, 0),(128, 128, 0),(0, 255, 0),(167, 238, 45),(0, 128, 0),(0, 255, 255),(0, 128, 128),(0, 0, 255),(0, 0, 128),(255, 0, 255),(128, 0, 128)]
 FPS			= 120		# I have 144 Hz monitor bish!
 N 			= 10
+SPEED 		= 0.005
 
 class Roters:
 	def __init__(self):
 		self.screen = pygame.display.set_mode((SCR_WIDTH, SCR_HEIGHT))
 		self.center=(120,400)
 		self.theta = 0
-		self.speed = 0.005
+		self.speed = SPEED
 		self.plotp = [[] for i in range(N)]
 
 	def draw(self, center, n):
 		nm=2*n-1
 		rads = self.radius * 2/(nm*np.pi)
 		gfxdraw.aacircle(self.screen,*center,int(rads),COLORS[(n-1)%len(COLORS)])
-		x = int(center[0] + (1)**n * rads * np.cos(nm*self.theta))
-		y = int(center[1] + (1)**n * rads * np.sin(nm*self.theta))
+		x = int(center[0] + (-1)**n * rads * np.cos(nm*self.theta))
+		y = int(center[1] + (-1)**n * rads * np.sin(nm*self.theta))
 		self.theta=(self.theta+self.speed)%(2*np.pi)
 
 		pygame.draw.aaline(self.screen,COLORS[(n-1)%len(COLORS)],center,(x,y))
